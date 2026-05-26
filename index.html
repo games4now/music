@@ -265,12 +265,12 @@
         thank you claude for helping me debug
         */
 
-        const API_BASE = 'https://tidal-proxy.monochrome.tf/api/v1';
+        const API_BASE = 'https://tidal-proxy.monochrome.tf/api/';
 
         class MusicAPI {
             async search(query) {
                 try {
-                    const response = await fetch(`${API_BASE}/search?s=${encodeURIComponent(query)}&countryCode=US`);
+                    const response = await fetch(`${API_BASE}v1/search?s=${encodeURIComponent(query)}&countryCode=US`);
                     const json = await response.json();
                     
                     const data = json.data || json;
@@ -285,7 +285,7 @@
 
             async getTrack(id) {
                 try {
-                    const response = await fetch(`${API_BASE}/track/?id=${id}&countryCode=US`);
+                    const response = await fetch(`${API_BASE}v2/track/?id=${id}&countryCode=US`);
                     return await response.json();
                 } catch (e) {
                     return null;
