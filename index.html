@@ -270,7 +270,7 @@
         class MusicAPI {
             async search(query) {
                 try {
-                    const response = await fetch(`${API_BASE}openapi/v2/searchResults/${encodeURIComponent(query)}?limit=25&offset=0&include=videos%2Cvideos.artists%2Cvideos.image&countryCode=US`);
+                    const response = await fetch(`https://www.qobuz.com/v4/us-en/catalog/search/autosuggest?q=${encodeURIComponent(query)}`);
                     const json = await response.json();
                     
                     const data = json.data || json;
