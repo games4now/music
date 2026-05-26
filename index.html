@@ -270,7 +270,7 @@
         class MusicAPI {
             async search(query) {
                 try {
-                    const response = await fetch(`${API_BASE}/search?s=${encodeURIComponent(query)}`);
+                    const response = await fetch(`${API_BASE}/search?s=${encodeURIComponent(query)}&countryCode=US`);
                     const json = await response.json();
                     
                     const data = json.data || json;
@@ -285,7 +285,7 @@
 
             async getTrack(id) {
                 try {
-                    const response = await fetch(`${API_BASE}/track/?id=${id}`);
+                    const response = await fetch(`${API_BASE}/track/?id=${id}&countryCode=US`);
                     return await response.json();
                 } catch (e) {
                     return null;
