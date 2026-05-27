@@ -370,8 +370,8 @@
 
             const categoriesDiv = document.createElement('div');
             categoriesDiv.className = 'categories';
-            const alphabetized = availableFilters.sort();
-            alphabetized.forEach(filterName => {
+            selectedFilters.sort();
+            selectedFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
                 if (filterObj.blocked === false) {
                     const tag = document.createElement('span');
