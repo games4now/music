@@ -275,12 +275,12 @@
         sortedFilters.forEach(filterName => {
             const label = document.createElement('label');
             label.className = 'filter-option';
-            
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = filterName;
             checkbox.name = 'filter';
-            
+
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(filterName));
             filterContainer.appendChild(label);
@@ -293,7 +293,7 @@
     // Enforce maximum of 3 checkboxes
     function enforceMaxThree(event) {
         if (event.target.type !== 'checkbox') return;
-        
+
         const checkboxes = filterContainer.querySelectorAll('input[type="checkbox"]');
         const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
 
@@ -370,17 +370,17 @@
 
             const categoriesDiv = document.createElement('div');
             categoriesDiv.className = 'categories';
-            selectedFilters.sort();
-            selectedFilters.forEach(filterName => {
-                const filterObj = entry.filters.find(f => f.filter === filterName);
-                if (filterObj.blocked === false) {
-                    const tag = document.createElement('span');
-                    tag.className = 'category-tag';
-                    tag.innerHTML = `<strong>${filterName}:</strong> ${filterObj.category} <span class="status-unblocked">(Unblocked)</span>`;
-                    categoriesDiv.appendChild(tag);
-                }
-            });
-            
+               const categoriesDiv = document.createElement('div');
+                categoriesDiv.className = 'categories';
+                entry.filters.slice().sort((a, b) => a.filter.localeCompare(b.filter)).forEach(filterObj => {
+                    if (filterObj.blocked === false) {
+                        const tag = document.createElement('span');
+                        tag.className = 'category-tag';
+                        tag.innerHTML = `<strong>${filterObj.filter}:</strong> ${filterObj.category} <span class="status-unblocked">(Unblocked)</span>`;
+                        categoriesDiv.appendChild(tag);
+                    }
+                });
+
             li.appendChild(categoriesDiv);
             resultsList.appendChild(li);
         });
