@@ -318,7 +318,6 @@
         const selectedCheckboxes = filterContainer.querySelectorAll('input[type="checkbox"]:checked');
         const selectedFilters = Array.from(selectedCheckboxes).map(cb => cb.value);
 
-
         const filteredDomains = domainData.filter(entry => {
             if (!entry.filters || !Array.isArray(entry.filters)) return false;
             return selectedFilters.every(selectedFilterName => {
@@ -346,6 +345,12 @@
         resultsCount.style.display = 'none';
     }
 
+    // Helper function to count unblocked filters for sorting
+    function getUnblockedCount(entry) {
+        if (!entry.filters || !Array.isArray(entry.filters)) return 0;
+        return entry.filters.filter(f => f.blocked === false).length;
+    }
+
     // Render results to UI
     function renderResults(domains, selectedFilters) {
         resultsList.innerHTML = '';
@@ -356,6 +361,20 @@
             resultsList.innerHTML = '<div class="empty-state">No domains found that are unblocked on all selected filters.</div>';
             return;
         }
+
+        // Sort domains: Most unblocked -> Least unblocked, then Alphabetically
+        domains.sort((a, b) => {
+            const countA = getUnblockedCount(a);
+            const countB = getUnblockedCount(b);
+
+            // Primary sort: Descending order of unblocked count
+            if (countB !== countA) {
+                return countB - countA;
+            }
+
+            // Secondary sort: Alphabetical order (A-Z)
+            return a.domain.localeCompare(b.domain);
+        });
 
         resultsCount.style.display = 'block';
         resultsCount.textContent = `${domains.length} domain${domains.length > 1 ? 's' : ''} found`;
