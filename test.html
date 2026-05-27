@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain Filter Search</title>
+    <title>FreeDNS Filter Checker</title>
     <style>
         :root {
             --bg-color: #f4f7f6;
@@ -186,8 +186,8 @@
 <body>
 
 <div class="container">
-    <h1>Domain Filter Search</h1>
-    <p class="subtitle">Upload your JSON file, select up to 3 filters, and find domains that are unblocked (blocked: false) on all of them.</p>
+    <h1>FreeDNS Filter Checker</h1>
+    <p class="subtitle">Upload your JSON file, select up to 3 filters, and find domains that are unblocked for these filters on FreeDNS.</p>
 
     <div class="section">
         <div class="section-title">1. Load Data</div>
@@ -208,6 +208,7 @@
 
     <div class="section">
         <div id="resultsCount" class="results-count" style="display: none;"></div>
+        
         <ul id="resultsList" class="results-list">
             <div class="empty-state">Results will appear here.</div>
         </ul>
@@ -370,7 +371,9 @@
 
             const categoriesDiv = document.createElement('div');
             categoriesDiv.className = 'categories';
-
+            var textThing = document.createElement('p');
+            textThing.innerHTML = 'unblocked on:';
+            categoriesDiv.appendChild(textThing);
             // Show the category specifically for the selected filters to provide context
             availableFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
