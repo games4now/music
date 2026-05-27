@@ -195,7 +195,7 @@
     </div>
 
     <div class="section">
-        <div class="section-title">2. Select Filters (Max 3)</div>
+        <div class="section-title">2. Select Filters</div>
         <div id="filterContainer" class="filter-grid">
             <span style="color: var(--text-muted); font-style: italic;">Upload a file to see available filters.</span>
         </div>
@@ -292,7 +292,7 @@
         const checkboxes = filterContainer.querySelectorAll('input[type="checkbox"]');
         const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
 
-        if (checkedCount >= 5) {
+        if (checkedCount >= 10) {
             checkboxes.forEach(cb => {
                 if (!cb.checked) {
                     cb.parentElement.classList.add('disabled');
