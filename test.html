@@ -374,8 +374,7 @@
             // Show the category specifically for the selected filters to provide context
             availableFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
-                return filterObj && filterObj.blocked === true;
-                if (filterObj) {
+                if (filterObj.blocked === false) {
                     const tag = document.createElement('span');
                     tag.className = 'category-tag';
                     tag.innerHTML = `<strong>${filterName}:</strong> ${filterObj.category} <span class="status-unblocked">(Unblocked)</span>`;
