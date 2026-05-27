@@ -374,7 +374,8 @@
             var textThing = document.createElement('p');
             textThing.innerHTML = 'unblocked on:';
             categoriesDiv.appendChild(textThing);
-            // Show the category specifically for the selected filters to provide context
+            var br = document.createElement('br');
+            categoriesDiv.appendChild(br);
             availableFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
                 if (filterObj.blocked === false) {
