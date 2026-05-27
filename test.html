@@ -317,10 +317,6 @@
         const selectedCheckboxes = filterContainer.querySelectorAll('input[type="checkbox"]:checked');
         const selectedFilters = Array.from(selectedCheckboxes).map(cb => cb.value);
 
-        if (selectedFilters.length === 0) {
-            alert("Please select at least one filter.");
-            return;
-        }
 
         const filteredDomains = domainData.filter(entry => {
             // Ensure the entry has a filters array
