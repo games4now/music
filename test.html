@@ -372,7 +372,9 @@
             categoriesDiv.className = 'categories';
                const categoriesDiv = document.createElement('div');
                 categoriesDiv.className = 'categories';
-availableFilters.forEach(filterName => {
+                    const alphaFilters = Array.from(availableFilters).sort();
+
+alphaFilters.forEach(filterName => {
                     if (filterObj.blocked === false) {
                         const tag = document.createElement('span');
                         tag.className = 'category-tag';
