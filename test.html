@@ -297,7 +297,7 @@
         const checkboxes = filterContainer.querySelectorAll('input[type="checkbox"]');
         const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
 
-        if (checkedCount >= 3) {
+        if (checkedCount >= 5) {
             checkboxes.forEach(cb => {
                 if (!cb.checked) {
                     cb.parentElement.classList.add('disabled');
@@ -319,10 +319,7 @@
 
 
         const filteredDomains = domainData.filter(entry => {
-            // Ensure the entry has a filters array
             if (!entry.filters || !Array.isArray(entry.filters)) return false;
-
-            // Check if EVERY selected filter exists for this domain AND is unblocked (blocked === false)
             return selectedFilters.every(selectedFilterName => {
                 const filterObj = entry.filters.find(f => f.filter === selectedFilterName);
                 return filterObj && filterObj.blocked === false;
@@ -332,7 +329,6 @@
         renderResults(filteredDomains, selectedFilters);
     });
 
-    // Clear button logic
     clearBtn.addEventListener('click', function() {
         const checkboxes = filterContainer.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(cb => {
@@ -376,7 +372,7 @@
             categoriesDiv.className = 'categories';
 
             // Show the category specifically for the selected filters to provide context
-            selectedFilters.forEach(filterName => {
+            availableFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
                 if (filterObj) {
                     const tag = document.createElement('span');
@@ -385,7 +381,7 @@
                     categoriesDiv.appendChild(tag);
                 }
             });
-
+            
             li.appendChild(categoriesDiv);
             resultsList.appendChild(li);
         });
