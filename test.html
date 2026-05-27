@@ -370,9 +370,8 @@
 
             const categoriesDiv = document.createElement('div');
             categoriesDiv.className = 'categories';
-
-            // Show the category specifically for the selected filters to provide context
-            availableFilters.forEach(filterName => {
+            const alphabetized = availableFilters.sort();
+            alphabetized.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
                 if (filterObj.blocked === false) {
                     const tag = document.createElement('span');
