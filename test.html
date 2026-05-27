@@ -374,6 +374,7 @@
             // Show the category specifically for the selected filters to provide context
             availableFilters.forEach(filterName => {
                 const filterObj = entry.filters.find(f => f.filter === filterName);
+                return filterObj && filterObj.blocked === false;
                 if (filterObj) {
                     const tag = document.createElement('span');
                     tag.className = 'category-tag';
