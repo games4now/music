@@ -372,7 +372,7 @@
             categoriesDiv.className = 'categories';
                const categoriesDiv = document.createElement('div');
                 categoriesDiv.className = 'categories';
-                entry.filters.slice().sort((a, b) => a.filter.localeCompare(b.filter)).forEach(filterObj => {
+availableFilters.forEach(filterName => {
                     if (filterObj.blocked === false) {
                         const tag = document.createElement('span');
                         tag.className = 'category-tag';
