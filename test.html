@@ -226,7 +226,6 @@
     const resultsList = document.getElementById('resultsList');
     const resultsCount = document.getElementById('resultsCount');
 
-    // Handle File Upload
     jsonUpload.addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -248,7 +247,6 @@
         reader.readAsText(file);
     });
 
-    // Extract all unique filter names from the dataset
     function extractFilters() {
         availableFilters.clear();
         domainData.forEach(entry => {
@@ -262,7 +260,6 @@
         });
     }
 
-    // Render checkboxes dynamically
     function renderFilterCheckboxes() {
         filterContainer.innerHTML = '';
         const sortedFilters = Array.from(availableFilters).sort();
@@ -286,12 +283,9 @@
             label.appendChild(document.createTextNode(filterName));
             filterContainer.appendChild(label);
         });
-
-        // Add event listener to enforce max 3 selections
         filterContainer.addEventListener('change', enforceMaxThree);
     }
 
-    // Enforce maximum of 3 checkboxes
     function enforceMaxThree(event) {
         if (event.target.type !== 'checkbox') return;
         
@@ -313,7 +307,6 @@
         }
     }
 
-    // Search Logic
     searchBtn.addEventListener('click', function() {
         const selectedCheckboxes = filterContainer.querySelectorAll('input[type="checkbox"]:checked');
         const selectedFilters = Array.from(selectedCheckboxes).map(cb => cb.value);
@@ -339,19 +332,19 @@
         clearResults();
     });
 
-    // Clear results display
+
     function clearResults() {
         resultsList.innerHTML = '<div class="empty-state">Results will appear here.</div>';
         resultsCount.style.display = 'none';
     }
 
-    // Helper function to count unblocked filters for sorting
+    
     function getUnblockedCount(entry) {
         if (!entry.filters || !Array.isArray(entry.filters)) return 0;
         return entry.filters.filter(f => f.blocked === false).length;
     }
 
-    // Render results to UI
+    
     function renderResults(domains, selectedFilters) {
         resultsList.innerHTML = '';
 
@@ -362,17 +355,17 @@
             return;
         }
 
-        // Sort domains: Most unblocked -> Least unblocked, then Alphabetically
+        
         domains.sort((a, b) => {
             const countA = getUnblockedCount(a);
             const countB = getUnblockedCount(b);
 
-            // Primary sort: Descending order of unblocked count
+            
             if (countB !== countA) {
                 return countB - countA;
             }
 
-            // Secondary sort: Alphabetical order (A-Z)
+            
             return a.domain.localeCompare(b.domain);
         });
 
