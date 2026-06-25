@@ -265,12 +265,12 @@
         thank you claude for helping me debug
         */
 
-        const API_BASE = 'https://tidal-proxy.monochrome.tf/';
+        const API_BASE = 'https://api.monochrome.tf';
 
         class MusicAPI {
             async search(query) {
                 try {
-                    const response = await fetch(`https://www.qobuz.com/v4/us-en/catalog/search/autosuggest?q=${encodeURIComponent(query)}`);
+                    const response = await fetch(`https://t2a.geeked.wtf/api/search/songs?query=${encodeURIComponent(query)}`);
                     const json = await response.json();
                     
                     const data = json.data || json;
@@ -285,7 +285,7 @@
 
             async getTrack(id) {
                 try {
-                    const response = await fetch(`${API_BASE}/api/v1/tracks/?id=${id}&countryCode=US`);
+                    const response = await fetch(`${API_BASE}/track/?id=${id}`);
                     return await response.json();
                 } catch (e) {
                     return null;
