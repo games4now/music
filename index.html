@@ -275,7 +275,7 @@
                     
                     const data = json.data || json;
                     const items = (data.items || []).map(item => ({ ...item, _type: 'track' }));
-                    
+                    console.log({items});
                     return { items };
                 } catch (e) {
                     console.error('Search error:', e);
