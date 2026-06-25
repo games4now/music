@@ -270,7 +270,10 @@
         class MusicAPI {
             async search(query) {
                 try {
-                    const response = await fetch(`https://t2a.geeked.wtf/api/search/songs?query=${encodeURIComponent(query)}`);
+                    const response = await fetch(`https://tidal-proxy.monochrome.tf/openapi/v2/searchResults/${encodeURIComponent(query)}`);
+                    fetch(`https://tidal-proxy.monochrome.tf/openapi/v2/searchResults/${encodeURIComponent(query)}`, {
+                      method: 'OPTIONS',
+                    })
                     const json = await response.json();
                     
                     const data = json.data || json;
